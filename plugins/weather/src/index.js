@@ -14,7 +14,7 @@ export default {
   postInitialize: async (config) => Weather.getInstance(config),
   registerUiPlugin: async () => ({
     supportedMaps: ['vcs.vcm.maps.Cesium'],
-    name: 'exportStep',
+    name: 'weather',
     routes,
     widgetButton,
   }),

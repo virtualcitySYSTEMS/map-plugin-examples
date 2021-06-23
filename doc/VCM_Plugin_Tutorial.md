@@ -141,7 +141,7 @@ Two properties (`radius` and `cloudHeight`) can be passed to the constructor via
 We now want to add the singleton pattern to restrict the instantiation of our class to one object:
 - Add at the very beginning of the file (line 1):
 ```js
-import defaultOptions from '../config.json';
+import defaultOptions from '../../config.json';
 
 /**
  * @type {vcs.vcm.plugins.weather.Weather}
@@ -377,6 +377,7 @@ Let's begin with the HTML part and add:
 
 - close button
 - dropdown for selecting the weather system
+- input for changing the intensity
 - buttons to start, stop and update the location
 
 ```vue
@@ -389,9 +390,12 @@ Let's begin with the HTML part and add:
     <div class="scroll-wrap">
       <div>
         <label id="weather_system_label" for="weather_system_input">{{$t('i18n_weather_system_input')}}</label>
-        <select id="weather_system_input" v-model="selectedSystem">
-          <option v-for="system in weatherSystems" v-bind:value="system.id">{{ system.name }}</option>
+        <select id="weather_system_input" v-model="selectedSystem" @change="start">
+          <option v-for="system in weatherSystems" :value="system.id">{{ system.name }}</option>
         </select>
+        <br>
+        <label id="weather_intensity_label" for="weather_system_input">{{$t('i18n_weather_intensity')}}</label>
+        <input v-model="intensity" type="number" :min="2000" :max="10000" :step="1" @change="start"/>
       </div>
       <div class="buttons">
         <button class="vcm-btn-project-list" @click="start">{{$t('i18n_weather_start')}}</button>
@@ -433,7 +437,7 @@ h2 {
 
 ```vue
 <script>
-import Weather from './weather';
+import Weather from '../api/weather';
 
 export default {
   name: 'weatherComponent',
@@ -444,6 +448,7 @@ export default {
         i18n_weather_system_input: 'Wetter: ',
         i18n_weather_snow: 'Schnee',
         i18n_weather_rain: 'Regen',
+        i18n_weather_intensity: 'Intensität',
         i18n_weather_start: 'Start',
         i18n_weather_stop: 'Stop',
         i18n_weather_update: 'Aktualisiere Lage',
@@ -453,6 +458,7 @@ export default {
         i18n_weather_system_input: 'Weather: ',
         i18n_weather_snow: 'Snow',
         i18n_weather_rain: 'Rain',
+        i18n_weather_intensity: 'Intensity',
         i18n_weather_start: 'Start',
         i18n_weather_stop: 'Stop',
         i18n_weather_update: 'Update Location',
@@ -466,12 +472,13 @@ export default {
         { id: 'snow', name: this.$t('i18n_weather_snow') },
       ],
       selectedSystem: 'rain',
+      intensity: 5000,
     };
   },
   methods: {
     start() {
       const weather = Weather.getInstance();
-      weather.start(this.selectedSystem);
+      weather.start(this.selectedSystem, this.intensity);
       weather.updateLocation();
     },
     stop() {
@@ -498,14 +505,14 @@ Additionally, to this component we want to add a plugin button, to open the plug
 
 ```vue
 <template>
-  <a href="#/weatherPlugin" class="vcm-btn-base-splash-hover" title="Weather Plugin">
+  <a href="#/weather" class="vcm-btn-base-splash-hover" title="Weather Plugin">
     <i class="fa fa-lg fa-umbrella weather-btn" />
   </a>
 </template>
 
 <script>
 export default {
-  name: 'widgetButton'
+  name: 'pluginButton'
 }
 </script>
 
@@ -538,7 +545,7 @@ export default {
   postInitialize: async (config) => Weather.getInstance(config),
   registerUiPlugin: async () => ({
     supportedMaps: ['vcs.vcm.maps.Cesium'],
-    name: 'exportStep',
+    name: 'weather',
     routes,
     widgetButton,
   }),
@@ -558,8 +565,8 @@ The [Vue Router](https://router.vuejs.org/) will redirect to this path, whenever
 
 ```js
 const routes = [{
-  name: 'exportStep',
-  path: '/exportStep',
+  name: 'weather',
+  path: '/weather',
   component: weatherComponent,
 }];
 ```
