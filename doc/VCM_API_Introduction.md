@@ -164,7 +164,7 @@ They provide functionality which is more general than widgets and are used in mu
 - `vcs.vcm.util.Login`: Singleton class used for managing logins to a service. So far, only the Planner functionality requires a login
 - `vcs.vcm.util.Projection`: Utility functions regarding map projection and crs transformations
 - `vcs.vcm.util.ViewPoint`: viewpoint objects
-- `vcs.vcm.util.style.DeclarativeStyleItem`: Style Object, see [3d-tiles-styling](https://github.com/AnalyticalGraphicsInc/3d-tiles/tree/master/Styling)
+- `vcs.vcm.util.style.DeclarativeStyleItem`: Style Object, see [3d-tiles-styling](https://github.com/AnalyticalGraphicsInc/3d-tiles/tree/master/specification/Styling)
 
 See also API Documentation: [vcs.vcm.util](https://lib.virtualcitymap.de/v4.0.x/doc/vcs.vcm.util.html)
 

@@ -12,13 +12,13 @@ We will show step-by-step how to do it.
 node -v && npm -v
 ```
 You'll need Node 12+ and npm 6+ installed to continue.
-- Check if [vcmplugin-cli](../README.md) is installed
+- Check if [@vcmap/plugin-cli](https://github.com/virtualcitySYSTEMS/map-plugin-cli) is installed
 ```shell
 vcmplugin -V
 ```
 If not, install it by calling
 ```shell
-npm i -g vcmplugin-cli
+npm i -g @vcmap/plugin-cli
 ```
 - Create a new directory and change to this directory
 ```shell
@@ -26,7 +26,7 @@ mkdir vcm-plugin-dev && cd vcm-plugin-dev
 ```
 ## 2. Plugin create prompt
 
-The [vcmplugin-cli](../README.md) provides a command to help you create the basic structure of a new plugin.
+The [@vcmap/plugin-cli](https://github.com/virtualcitySYSTEMS/map-plugin-cli) provides a command to help you create the basic structure of a new plugin.
 To start the prompt call
 ```shell
 vcmplugin create
@@ -62,7 +62,7 @@ We now want to add the actual code of our sample plugin to generate weather.
 If you are creating a complex plugin, a basic architecture separating your plugin's api and ui becomes crucial.
 Although our sample plugin is quite simple, we want to follow this best practice.
 
-- create a new folder `api` within the `weather` directory
+- create a new folder `api` within the `src` directory
 - add a new javascript file called `weather.js` to your `api` folder.
 - Open the `weather.js` in the text editor and define the following variables:
 
@@ -575,7 +575,7 @@ import widgetButton from './ui/widgetButton';
 
 ## 6. Serving plugin during development
 
-The [vcmplugin-cli](../README.md) provides a command to serve a plugin within an existing map.
+The [@vcmap/plugin-cli](https://github.com/virtualcitySYSTEMS/map-plugin-cli) provides a command to serve a plugin within an existing map.
 
 - Open Windows cmd or Linux Shell in your plugin root directory and call
 ```shell
