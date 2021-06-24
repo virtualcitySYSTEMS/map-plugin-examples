@@ -35,11 +35,11 @@ vcmplugin create
 - specify your plugins *name* as `weather`
 - adopt the default *version* `1.0.0` by pressing enter
 - enter *description* `example weather plugin`
-- adopt the default entry point *main* `src/index.js`
 - select `build` and `pack` to be added to your `package.json`
 - enter your name and email to make you the *author*
 - adopt the default *license* `ISC`
 - adopt the default *map version* `>=4.0`
+- add [@vcmap/plugin-cli](https://github.com/virtualcitySYSTEMS/map-plugin-cli) as development dependency
       
 The cli will create a new directory `weather` containing the basic [structure of a plugin](VCM_Plugin.md#2-structure-of-a-plugin).
 Open the working directory in your favorite editor, it should look like:
@@ -50,6 +50,7 @@ Open the working directory in your favorite editor, it should look like:
     └───weather
     │   │   config.json
     │   │   package.json
+    │   │   package-lock.json
     │   │   README.md
     │   │   
     │   └───src
@@ -74,11 +75,15 @@ let gravityScratch = new Cesium.Cartesian3();
 /** @type {Cesium.Matrix4} */
 let modelMatrix = new Cesium.Matrix4();
 ```
-
 The variable `framework` is an instance of the [vcs.vcm.Framework](https://lib.virtualcitymap.de/v4.0.x/doc/vcs.vcm.Framework.html) class.
 The other two variables are needed for our particle system.
 
-- Define a ECMAScript 6 class called `Weather` right underneath:
+> Your editor might not recognize some classes and mark them as unresolved.
+> Don't worry, those classes will be resolved by the VC Map Framework!
+> Always use the namespace `vcs.vcm.XXX` (for [VC MAP API](https://lib.virtualcitymap.de/v4.0.x/doc/)), `Cesium.XXX` (for [Cesium API](https://cesium.com/docs/cesiumjs-ref-doc/index.html)) or `ol.XXX` (for [OpenLayers API](https://openlayers.org/en/latest/apidoc/)).
+> Importing those classes won't work.
+
+- Define an ECMAScript 6 class called `Weather` right underneath:
     
 ```js
 /**
@@ -187,9 +192,12 @@ Therefore, we want to add some default options to our `config.json`:
 Further we will add some class methods. In our `getInstance()` function we call a method called `initialize()`,
 which initializes several class properties we defined in the constructor.
 
-- Add this method to our class (line ~82 of `wehater.js`):
+- Add this method to our class (line ~82 of `weather.js`):
 
 ```js
+/**
+ * initialize particle systems for Cesium Map
+ */
 initialize() {
   const activeMap = framework.getActiveMap();
   
@@ -558,7 +566,7 @@ Furthermore, we register an ui plugin by providing a `registerUiPlugin` function
 This function has to return a [vcs.ui.PluginOptions](https://lib.virtualcitymap.de/v4.0.x/doc/vcs.ui.html#.PluginOptions) object. 
 In our case we define  `supportedMaps`, `name`, `routes` and the `widgetButton`.
 
-Finally, we have to add an `routes` array to register our `weatherComponent.vue` at a specific path.
+Finally, we have to add a `routes` array to register our `weatherComponent.vue` at a specific path.
 The [Vue Router](https://router.vuejs.org/) will redirect to this path, whenever the widget button is clicked.
 
 - Add routes to `index.js` (~line 6):

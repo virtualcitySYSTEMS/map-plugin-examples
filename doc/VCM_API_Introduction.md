@@ -30,7 +30,7 @@ The most important parameters are:
 | mapcontainer | `string` | dom id of the mapcontainer |
 | startViewPoint | `string` | string name of the viewpoint to start the map with |
 | projection | `Object` | the default projection to use for display/input of coordinates to/from the user. See `vcs.vcm.util.Projection` |
-| selectBehavior | `Object` | Defines the select behavior for buildings, vectors etc. See `vcs.vcm.SelectBehavior`} |
+| selectBehavior | `Object` | Defines the select behavior for buildings, vectors etc. See `vcs.vcm.SelectBehavior` |
 | widgets | `Array(Object)` | Each object literals defines one `vcs.vcm.widgets.Widget` configuration |
 | maps | `Array(Object)` | Each object literal represents one `vcs.vcm.maps.Map` configuration |
 | layers | `Array(Object)` | Each object literal in the array consists of one `vcs.vcm.layer.Layer` configuration |

@@ -79,6 +79,9 @@ export default class Weather {
     return _instance;
   }
   
+  /**
+   * initialize particle systems for Cesium Map
+   */
   initialize() {
     const activeMap = framework.getActiveMap();
   
@@ -190,6 +193,9 @@ export default class Weather {
     this.clock.shouldAnimate = true;
   }
   
+  /**
+   * stop weather and reset scene
+   */
   stop() {
     this.clock.shouldAnimate = false;
     this.animationViewModel.pauseViewModel.command();
@@ -204,6 +210,9 @@ export default class Weather {
     this.scene.fog.minimumBrightness = 0.1;
   }
   
+  /**
+   * update location of weather particle system to current camera position
+   */
   updateLocation() {
     this.staticHeight(this.scene.camera.position, this.cloudHeight);
     this.snowSystem.modelMatrix = Cesium.Matrix4.setTranslation(modelMatrix, this.position, modelMatrix);
