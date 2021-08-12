@@ -1,6 +1,6 @@
 # customTileProvider
 
-This is a code Example to provide a custom vectorTile Provider via Plugin. 
+This is a code Example to provide a custom vectorTile Provider via Plugin.
 
 The Provider can be used for vectorTile layers in the config.json:
 

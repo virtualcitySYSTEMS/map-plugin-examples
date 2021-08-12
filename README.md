@@ -11,3 +11,4 @@ This repo provides example plugins for VC Map and documentation and guides for p
 ### List of example plugins
 
 - [weather](plugins/weather/README.md) (from [VC Map Plugin Tutorial](./doc/VCM_Plugin_Tutorial.md))
+- [customTileProvider](plugins/customTileProvider/README.md) 
