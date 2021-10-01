@@ -1,0 +1,24 @@
+{
+  "name": "cyclomedia",
+  "startingmap": false,
+  "url": "https://streetsmart.cyclomedia.com/api/v21.1/StreetSmartApi.js",
+  "user": "toBeDefined",
+  "password": "toBeDefined",
+  "apiKey": "toBeDefined",
+  "locale": "en-us",
+  "addressSettings": {
+    "locale": "us",
+    "database": "Nokia"
+  },
+  "configurationUrl": "https://atlas.cyclomedia.com/configuration/",
+  "recordingsBaseUrl": "https://atlas.cyclomedia.com/recording/wfs?",
+  "recordingsColorRGBA": [0, 128, 255, 0.4],
+  "recordingsBalloonKey": "address",
+  "startUpLayer": null,
+  "startUpZoomDistance": null,
+  "cameraOptions3D": {
+    "heightReference": "cyclomedia",
+    "offset": 0
+  },
+  "actionButton": false
+}

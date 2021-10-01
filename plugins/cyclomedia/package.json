@@ -1,0 +1,17 @@
+{
+  "name": "cyclomedia",
+  "version": "2.0.0",
+  "description": "adds cyclomedia panorama viewer to the map",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Roland Ruhdorfer <rruhdorfer@vc.systems>",
+  "license": "ISC",
+  "engines": {
+    "vcm": ">=4.0"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
