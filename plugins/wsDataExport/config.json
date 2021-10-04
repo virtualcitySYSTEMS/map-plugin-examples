@@ -1,0 +1,37 @@
+{
+  "wcs": [
+    {
+      "service": "geoserver",
+      "baseUrl": "http://localhost:8080/geoserver/",
+      "user": "",
+      "pw": "",
+      "format": "GeoTIFF",
+      "coverages": [
+        {
+          "name": "exampleWCS",
+          "label": "Example WCS"
+        }
+      ],
+      "EPSGCode": "25833",
+      "proj4": "+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs",
+      "maxPixel": 4000000
+    }
+  ],
+  "wfs": [
+    {
+      "service": "geoserver",
+      "baseUrl": "http://localhost:8080/geoserver/",
+      "user": "",
+      "pw": "",
+      "typeNames": [
+        {
+          "name": "exampleWFS",
+          "label": "Example WFS"
+        }
+      ],
+      "outputFormats": ["GML2", "GML3", "GML32", "KML", "SHAPE-ZIP", "CSV", "JSON"],
+      "EPSGCode": "4326",
+      "proj4": "+proj=longlat +datum=WGS84 +no_defs"
+    }
+  ]
+}

@@ -16,3 +16,4 @@ This repo provides example plugins for VC Map and documentation and guides for p
 - [cyclomedia](plugins/cyclomedia/README.md) 
 - [coordinateSearchPlugin](plugins/coordinateSearchPlugin/README.md) 
 - [wmsDataSource](plugins/wmsDataSource/README.md) 
+- [wsDataExport](plugins/wsDataExport/README.md) 
