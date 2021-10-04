@@ -17,3 +17,4 @@ This repo provides example plugins for VC Map and documentation and guides for p
 - [coordinateSearchPlugin](plugins/coordinateSearchPlugin/README.md) 
 - [wmsDataSource](plugins/wmsDataSource/README.md) 
 - [wsDataExport](plugins/wsDataExport/README.md) 
+- [wfsSearchPlugin](plugins/wfsSearchPlugin/README.md) 
