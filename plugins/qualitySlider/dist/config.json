@@ -1,0 +1,76 @@
+{
+  "default": 2,
+  "viewModels": [
+    {
+      "label": "tief",
+      "model": {
+        "sse": 32,
+        "fxaa": false,
+        "fog": {
+          "enabled": true,
+          "density": 0.002,
+          "screenSpaceErrorFactor": 24
+        },
+        "resolutionScale": 0.5,
+        "layerSSEFactor": 2
+      }
+    },
+    {
+      "label": "niedrig",
+      "model": {
+        "sse": 4,
+        "fxaa": false,
+        "fog": {
+          "enabled": true,
+          "density": 0.0009,
+          "screenSpaceErrorFactor": 6
+        },
+        "resolutionScale": 0.9,
+        "layerSSEFactor": 2
+      }
+    },
+    {
+      "label": "mittel",
+      "model": {
+        "sse": 2.333,
+        "fxaa": false,
+        "fog": {
+          "enabled": true,
+          "density": 0.0005,
+          "screenSpaceErrorFactor": 4
+        },
+        "resolutionScale": 1,
+        "layerSSEFactor": 1.1
+      }
+    },
+    {
+      "label": "hoch",
+      "model": {
+        "sse": 1.333,
+        "fxaa": true,
+        "fog": {
+          "enabled": false,
+          "density": 0,
+          "screenSpaceErrorFactor": 0
+        },
+        "resolutionScale": 1,
+        "layerSSEFactor": 0.5
+      }
+    },
+    {
+      "label": "ultra",
+      "model": {
+        "sse": 1.001,
+        "fxaa": true,
+        "fog": {
+          "enabled": false,
+          "density": 0,
+          "screenSpaceErrorFactor": 0
+        },
+        "resolutionScale": 1,
+        "layerSSEFactor": 0.5
+      }
+    }
+  ],
+  "version": "^2.0.0"
+}
