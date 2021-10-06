@@ -15,3 +15,4 @@ This repo provides example plugins for VC Map and documentation and guides for p
 - [customTileProvider](plugins/customTileProvider/README.md) 
 - [cyclomedia](plugins/cyclomedia/README.md) 
 - [coordinateSearchPlugin](plugins/coordinateSearchPlugin/README.md) 
+- [wmsDataSource](plugins/wmsDataSource/README.md) 
