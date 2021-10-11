@@ -1,0 +1,37 @@
+{
+  "name": "coordinateSearchPlugin",
+  "layerOptions": {
+    "zIndex": 30,
+    "vectorProperties": {
+      "altitudeMode": "relativeToGround",
+      "eyeOffset" : [0, 0, -100],
+      "heightAboveGround" : 10
+    }
+  },
+  "searchProjections": [],
+  "balloonInfo": [
+    "<div class='balloon' id='myBalloon'>",
+    "<h1 class='balloon-title'><% if (typeof(obj.name) !== 'undefined') { %><%= obj.name %><% } %></h1>",
+    "<div class='balloon-content'>",
+    "<p class='balloon-text'><i class='fa fa-lg fa-globe'></i>&ensp;<b>WGS84 (lat/lon)</b>&ensp;<%= obj.pointWGS84 %></p>",
+    "<p class='balloon-text'><i class='fa fa-lg fa-map'></i>&ensp;<b><%= obj.epsg %></b>&ensp;<%= obj.pointProjected %></p>",
+    "</div>",
+    "   <div class='balloon-close-col'>",
+    "       <button class='close-balloon'><i class='fa fa-times fa-lg'></i></button>",
+    "   </div>",
+    "   <div class='dialog-image-balloon'></div>",
+    "   <div class='balloon-left-edge'></div>",
+    "</div>"
+  ],
+  "title": "<% if (typeof(name) !== 'undefined') { %> <%= name %><% } %>",
+  "i18n": {
+    "de": {
+      "i18n_coordinateSearch_title": "Gesuchte Position",
+      "i18n_coordinateSearch_description": "Koordinate"
+    },
+    "en": {
+      "i18n_coordinateSearch_title": "Searched Position",
+      "i18n_coordinateSearch_description": "coordinate"
+    }
+  }
+}
