@@ -1,0 +1,23 @@
+{
+  "name": "map-plugin-example",
+  "version": "1.0.0",
+  "description": "repository for open VC Map plugins",
+  "author": "virtualcitySYSTEMS GmbH",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@vcsuite/eslint-config": "^1.0.2",
+    "eslint": "^7.32.0"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "sourceType": "module",
+      "ecmaVersion": 2018
+    }
+  },
+  "eslintIgnore": [
+    "node_modules",
+    "dist"
+  ]
+}

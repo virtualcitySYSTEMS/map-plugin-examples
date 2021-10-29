@@ -1,0 +1,36 @@
+{
+  "layerOptions": {
+    "projection" : {
+      "epsg" : 4326
+    },
+    "zIndex": 30,
+    "vectorProperties": {
+      "altitudeMode": "relativeToGround",
+      "eyeOffset" : [0, 0, -100],
+      "heightAboveGround" : 10
+    }
+  },
+  "balloonInfo": [
+    "<div class='balloon' id='myBalloon'>",
+    "<h1 class='balloon-title'><% if (typeof(obj.address) !== 'undefined') { %><%= obj.address %><% } %></h1>",
+    "<div class='balloon-content'><p class='balloon-text'>Optional Balloon Content</p></div>",
+    "   <div class='balloon-close-col'>",
+    "       <button class='close-balloon'><i class='fa fa-times fa-lg'></i></button>",
+    "   </div>",
+    "   <div class='dialog-image-balloon'></div>",
+    "   <div class='balloon-left-edge'></div>",
+    "</div>"
+  ],
+  "title": "<% if (typeof(address) !== 'undefined') { %><%= address %><% } %>",
+  "description": "Description",
+  "url": "ArcGIS_Server",
+  "defaultQueryParams": {
+    "outSR": { "latestWkid": 4326, "wkid" :4326 },
+    "outFields": "*",
+    "maxLocations": 6
+  },
+  "defaultAutocompleteParams": {
+    "maxSuggestions": 6
+  },
+  "zoomDistance": 50
+}
