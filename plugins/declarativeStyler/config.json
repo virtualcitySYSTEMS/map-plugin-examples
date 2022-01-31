@@ -1,0 +1,45 @@
+{
+  "name": "declarativeStyler",
+  "layerTypes": [
+    "vcs.vcm.layer.Buildings"
+  ],
+  "colors": [
+    {
+      "text": "rot => grün",
+      "value": [
+        "red",
+        "green"
+      ]
+    },
+    {
+      "text": "blau => rot",
+      "value": [
+        "blue",
+        "red"
+      ]
+    },
+    {
+      "text": "gelb => blau",
+      "value": [
+        "yellow",
+        "blue"
+      ]
+    },
+    {
+      "text": "rot => weiß",
+      "value": [
+        "red",
+        "white"
+      ]
+    },
+    {
+      "text": "schwarz => weiß",
+      "value": [
+        "black",
+        "white"
+      ]
+    }
+  ],
+  "downloadBtn": true,
+  "version": "^2.0.0"
+}

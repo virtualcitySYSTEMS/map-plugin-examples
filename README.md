@@ -15,6 +15,9 @@ This repo provides example plugins for VC Map and documentation and guides for p
 - [customTileProvider](plugins/customTileProvider/README.md)
 - [cyclomedia](plugins/cyclomedia/README.md)
 
+#### D
+- [declarativeStyler](plugins/declarativeStyler/README.md)
+
 #### E
 - [esriSearchPlugin](plugins/esriSearchPlugin/README.md)
 

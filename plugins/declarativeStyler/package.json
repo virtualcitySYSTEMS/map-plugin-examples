@@ -1,0 +1,17 @@
+{
+  "name": "declarativeStyler",
+  "version": "2.0.0",
+  "description": "plugin for dynamically creating declarative styles",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Thomas Adolphi <tadolphi@vc.systems>",
+  "license": "ISC",
+  "engines": {
+    "vcm": ">=4.0"
+  },
+  "dependencies": {
+    "chroma-js": "^2.1.1"
+  }
+}
