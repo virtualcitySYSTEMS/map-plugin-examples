@@ -64,7 +64,7 @@
           layer.deactivate();
           vcs.vcm.Framework.getInstance().removeLayer(layer);
         }
-        this.$store.commit('wmsDatasource/removeLayer', this.layerName);
+        this.$store.commit('wmsDataSource/removeLayer', this.layerName);
       },
     },
   };

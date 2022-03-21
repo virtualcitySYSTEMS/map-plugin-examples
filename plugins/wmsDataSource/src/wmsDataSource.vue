@@ -108,7 +108,7 @@
           <div>
             <hr class="vcm-border vcm-border-dye03">
             <WmsLayer
-              v-for="layer in $store.state.wmsDatasource.layers"
+              v-for="layer in $store.state.wmsDataSource.layers"
               :key="layer.layerName"
               :layer-name="layer.layerName"
               :title="layer.title"
@@ -260,7 +260,7 @@
         vcs.vcm.Framework.getInstance().addLayer(wmsLayer);
         wmsLayer.activate().then(() => {
           this.$store.commit(
-            'wmsDatasource/addLayer',
+            'wmsDataSource/addLayer',
             { title: this.uiConfig.title || 'WMS Layer', layerName: wmsLayer.name },
           );
         });
