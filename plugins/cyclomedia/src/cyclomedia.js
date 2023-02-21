@@ -3,6 +3,38 @@ import defaultOptions from '../config.json';
 import { createReqURL } from './streetSmartApiHelpers';
 
 /**
+ * derives a wgs extent from cesium camera review and restricts it to a maximum size
+ * Reduction is performed towards camera side (removing the averted side)
+ * @param {Cesium.Rectangle} rect - camera view rectangle
+ * @param {number} maxSize - max size of extent
+ * @returns {ol.Extent}
+ */
+function rectToWGS84Extent(rect, maxSize = 1000) {
+  const extentWGS84 = [
+    Cesium.Math.toDegrees(rect.west),
+    Cesium.Math.toDegrees(rect.south),
+    Cesium.Math.toDegrees(rect.east),
+    Cesium.Math.toDegrees(rect.north),
+  ];
+  const extent = ol.proj.transformExtent(
+    extentWGS84,
+    'EPSG:4326',
+    'EPSG:3857',
+  );
+  const [width, height] = ol.extent.getSize(extent);
+  if (width > maxSize || height > maxSize) {
+    extent[0] = extent[0] + (width - maxSize) / 2;
+    extent[2] = extent[2] - (width - maxSize) / 2;
+    extent[3] = extent[3] - (height - maxSize);
+  }
+  return ol.proj.transformExtent(
+    extent,
+    'EPSG:3857',
+    'EPSG:4326',
+  );
+}
+
+/**
  * @type {vcs.vcm.Framework}
  */
 const framework = vcs.vcm.Framework.getInstance();
@@ -55,6 +87,8 @@ export default class Cyclomedia {
     this.wfsLayer = null;
     /** @type {vcs.vcm.maps.VcsMap} */
     this.activeMap = null;
+    /** @type {string} */
+    this.startUpMap = options.startUpMap || 'vcs.vcm.maps.Openlayers';
     /** @type {string} */
     this.startUpLayer = options.startUpLayer ? options.startUpLayer : null;
     /** @type {int} */
@@ -379,7 +413,12 @@ export default class Cyclomedia {
    * @returns {Promise}
    */
   fetchData() {
+    if (this.runningRequest) {
+      this.runningRequest.cancel();
+      this.runningRequest = null;
+    }
     if (this.wfsLayer.url) {
+      this.runningRequest = axios.CancelToken.source();
       let postData = this.wfsLayer.wfsFormat.writeGetFeature(/** @type {olx.format.WFSWriteGetFeatureOptions} */ ({
         featureNS: this.wfsLayer.featureNS,
         featurePrefix: this.wfsLayer.featurePrefix,
@@ -392,12 +431,12 @@ export default class Cyclomedia {
         headers: {
           'Content-Type': 'text/xml',
         },
+        cancelToken: this.runningRequest.token,
         withCredentials: true,
         auth: {
           username: this.user,
           password: this.password,
         },
-
       })
         .then((response) => {
           const reader = new ol.format.GeoJSON();
@@ -407,6 +446,7 @@ export default class Cyclomedia {
             features.forEach(f => f.setProperties({ [key]: `ImageId: ${f.get('imageId')}` }));
             this.vectorLayerRecordings.addFeatures(features);
           }
+          this.runningRequest = null;
         })
         .catch((err) => {
           console.log(`Could not send request for loading layer content (${err.message})`);
@@ -441,8 +481,13 @@ export default class Cyclomedia {
         .then(() => this.activate(viewPoint));
     }
 
-    if (!(framework.getActiveMap() instanceof vcs.vcm.maps.Openlayers)) {
-      framework.activateMap('vcs.vcm.maps.Openlayers');
+    if (framework.getActiveMap().name !== this.startUpMap) {
+      const map = framework.getMapByName(this.startUpMap);
+      if (map) {
+        framework.activateMap(map.name);
+      } else {
+        console.error(`Could not activate map. Map of name ${this.startUpMap} is not configured. Check config.json!`)
+      }
     }
 
     if (this.startUpLayer) {
@@ -455,7 +500,7 @@ export default class Cyclomedia {
     this.viewpoint = viewPoint;
     const position = this.proj.transformFrom(
       vcs.vcm.util.wgs84Projection,
-      viewPoint.groundPosition,
+      viewPoint.groundPosition || viewPoint.cameraPosition,
     );
     if (position) {
       return this.openViewer(position);
@@ -555,17 +600,10 @@ export default class Cyclomedia {
     } else if (map instanceof vcs.vcm.maps.Cesium) {
       const scene = map.getScene();
       this.subscribeKey = scene.camera.moveEnd.addEventListener(() => {
-        if (scene.camera.pitch < -0.7) {
+        if (this.panoramaViewActive) {
           const rect = scene.camera.computeViewRectangle();
-          if (this.panoramaViewActive && Cesium.Rectangle.computeWidth(rect) < 0.0002) {
-            const extentWGS84 = [
-              Cesium.Math.toDegrees(rect.west),
-              Cesium.Math.toDegrees(rect.south),
-              Cesium.Math.toDegrees(rect.east),
-              Cesium.Math.toDegrees(rect.north),
-            ];
-            this.getRecordings(extentWGS84);
-          }
+          const extentWGS84 = rectToWGS84Extent(rect);
+          this.getRecordings(extentWGS84);
         }
       });
     } else {

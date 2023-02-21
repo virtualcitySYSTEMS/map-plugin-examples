@@ -1,6 +1,6 @@
 {
   "name": "cyclomedia",
-  "startingmap": false,
+  "activeOnStartup": true,
   "url": "https://streetsmart.cyclomedia.com/api/v21.1/StreetSmartApi.js",
   "user": "toBeDefined",
   "password": "toBeDefined",
@@ -14,6 +14,7 @@
   "recordingsBaseUrl": "https://atlas.cyclomedia.com/recording/wfs?",
   "recordingsColorRGBA": [0, 128, 255, 0.4],
   "recordingsBalloonKey": "address",
+  "startUpMap": "Cesium Map",
   "startUpLayer": null,
   "startUpZoomDistance": null,
   "cameraOptions3D": {
